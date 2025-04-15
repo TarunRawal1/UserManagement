@@ -5,48 +5,48 @@ import { usePage } from "../context/Pagecontext";
 const Footer = () => {
   const { page } = usePage();
   useEffect(() => {
-    setCurrentPage(page); // Update current page when page changes
+    setCurrentPage(page);
   }, [page]);
-  const [currentPage, setCurrentPage] = useState(page); // Current page state
-  const totalPages = 6; // Total number of pages (you can adjust this)
-  const navigate = useNavigate(); // For navigation
+  const [currentPage, setCurrentPage] = useState(page);
+  const totalPages = 6;
+  const navigate = useNavigate();
 
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      navigateToPage(currentPage - 1); // Navigate to the previous page
+      navigateToPage(currentPage - 1);
     }
   };
 
   const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
-      navigateToPage(currentPage + 1); // Navigate to the next page
+      navigateToPage(currentPage + 1);
     }
   };
 
   const navigateToPage = (page) => {
     switch (page) {
       case 1:
-        navigate("/"); // Home page
+        navigate("/");
         break;
       case 2:
-        navigate("/about"); // About page
+        navigate("/about");
         break;
       case 3:
-        navigate("/search"); // Search page
+        navigate("/search");
         break;
       case 4:
-        navigate("/listusers"); // List Users page
+        navigate("/listusers");
         break;
       case 5:
-        navigate("/update"); // Update User page
+        navigate("/update");
         break;
       case 6:
-        navigate("/delete"); // Delete User page
+        navigate("/delete");
         break;
       default:
-        navigate("/"); // Default to home page
+        navigate("/");
     }
   };
 

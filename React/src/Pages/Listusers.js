@@ -3,8 +3,8 @@ import { useUserContext } from "../context/Usercontext";
 import { usePage } from "../context/Pagecontext";
 const Listusers = () => {
   const { user, addUser, dispatch } = useUserContext();
-  const [filteredUsers, setFilteredUsers] = useState([]); // State for filtered users
-  const [selectedRole, setSelectedRole] = useState("all"); // State for selected role
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [selectedRole, setSelectedRole] = useState("all");
   const pagedis = usePage();
   useEffect(() => {
     pagedis.dispatch({ type: "ADD_PAGE", payload: { page: 4 } });
@@ -15,13 +15,12 @@ const Listusers = () => {
       });
       const data = await response.json();
       console.log("User Data", data);
-      addUser(data); // Add the fetched users to the context
+      addUser(data);
     }
     fetchData();
   }, []);
 
   useEffect(() => {
-    // Filter users based on the selected role
     if (selectedRole === "all") {
       setFilteredUsers(user);
     } else {
@@ -31,7 +30,7 @@ const Listusers = () => {
   }, [selectedRole, user]);
 
   return (
-    <div className="w-4/5 mx-auto mt-10">
+    <div className="w-4/5 mx-auto min-h-screen mt-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-gray-800 to-gray-900 p-4 rounded shadow-lg">
           List of Users
@@ -39,12 +38,12 @@ const Listusers = () => {
         <select
           value={selectedRole}
           onChange={(e) => {
-            setSelectedRole(e.target.value); // Update the selected role
+            setSelectedRole(e.target.value);
             if (e.target.value === "user") {
               dispatch({
                 type: "ROLE_USER",
                 payload: {
-                  roleUser: true, // Send true to the reducer
+                  roleUser: true,
                 },
               });
             } else if (e.target.value === "admin") {

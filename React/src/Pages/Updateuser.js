@@ -7,25 +7,17 @@ const Updateuser = () => {
   useEffect(() => {
     dispatch({ type: "ADD_PAGE", payload: { page: 5 } });
   }, []);
-  const [formData, setFormData] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    role: "",
-    designation: "",
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setFormData({
+      let formData = {
         firstName: e.target.firstName.value,
         lastName: e.target.lastName.value,
         email: e.target.email.value,
         role: e.target.role.value,
         designation: e.target.designation.value,
-      });
+      };
       console.log("formData", formData);
       const response = await fetch("http://localhost:5000/update", {
         method: "POST",
@@ -38,9 +30,9 @@ const Updateuser = () => {
       const data = await response.json();
       if (data.message === "User Updated Successfully") {
         toast.success("User Updated Successfully");
-        e.target.reset(); // Reset the form fields
+        e.target.reset();
       } else {
-        alert("Error: " + data.message);
+        toast.error("User Update Failed! Please check the values.");
       }
     } catch (error) {
       console.error("Error updating user:", error);

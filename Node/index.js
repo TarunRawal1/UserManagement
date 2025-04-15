@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("./MongoDB/mongoose"); // Import the mongoose connection
-const UserModel = require("./MongoDB/UserModel"); // Import the UserModel
+require("./MongoDB/mongoose");
+const UserModel = require("./MongoDB/UserModel");
 
 app.use(cors());
 
@@ -37,11 +37,11 @@ app.get("/list", async (req, res) => {
 });
 app.post("/delete", async (req, res) => {
   try {
-    const userEmail = req.body.email; // Get the user ID from the request body
+    const userEmail = req.body.email;
     if (!userEmail) {
       return res.status(400).json({ message: "record not found" });
     }
-    await UserModel.deleteOne({ email: userEmail }); // Use the ID to delete the user
+    await UserModel.deleteOne({ email: userEmail });
     console.log("User Deleted Successfully");
     return res.status(200).json({ message: "User Deleted Successfully" });
   } catch (error) {
@@ -52,7 +52,7 @@ app.post("/delete", async (req, res) => {
 app.post("/update", async (req, res) => {
   try {
     console.log("req.body", req.body);
-    const userEmail = req.body.email; // Get the user ID from the request body
+    const userEmail = req.body.email;
     if (!userEmail) {
       return res.status(400).json({ message: "record not found" });
     }
@@ -66,8 +66,9 @@ app.post("/update", async (req, res) => {
           role: req.body.role,
           designation: req.body.designation,
         },
-      }
-    ); // Use the ID to update the user
+      },
+      { runValidators: true }
+    );
     console.log("User Updated Successfully");
     return res.status(200).json({ message: "User Updated Successfully" });
   } catch (error) {
@@ -79,7 +80,7 @@ app.get("/search", async (req, res) => {
   try {
     console.log("req.query", req.query);
     console.log("req.body", req.query.name);
-    const searchTerm = req.query.name; // Get the search term from the query parameters
+    const searchTerm = req.query.name;
     if (!searchTerm) {
       return res.status(400).json({ message: "Search term is required" });
     }

@@ -30,8 +30,8 @@ const About = () => {
     const data = await response.json();
     if (data.message === "User Created Successfully") {
       toast.success("User Created Successfully");
-      e.target.reset(); // Reset the form fields
-      navigate("/"); // Redirect to the home page after successful creation
+      e.target.reset();
+      navigate("/");
     } else {
       toast.error("User Creation Failed");
     }
@@ -115,7 +115,7 @@ const About = () => {
             className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div className="ml-36">
+        <div className="ml-56">
           <button
             type="submit"
             className="w-2/3 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
