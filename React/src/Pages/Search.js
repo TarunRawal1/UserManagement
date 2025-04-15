@@ -27,8 +27,7 @@ const Search = () => {
   };
 
   return (
-    <div className="w-2/3 mx-auto mt-10">
-      {/* Search Bar */}
+    <div className="w-2/3 min-h-screen mx-auto mt-10">
       <form onSubmit={handleSearch} className="flex items-center mb-6">
         <input
           type="text"

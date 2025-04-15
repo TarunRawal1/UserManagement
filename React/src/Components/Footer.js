@@ -51,7 +51,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full mt-10 p-4 bg-gray-200 text-center">
+    <footer className="  w-full mt-10 p-4 bg-gray-200 text-center">
       <div className="flex justify-center items-center space-x-4">
         <button
           onClick={handlePrevious}
