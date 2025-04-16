@@ -18,11 +18,11 @@ const Home = () => {
           <h1 className="text-xl font-bold">Search for a User</h1>
         </div>
       </Link>
-      <Link to="/listusers">
+      <a href="/listusers">
         <div className="w-2/3 mx-auto hover:scale-110 transition duration-500 ease-in-out flex justify-center mt-10 p-4 shadow-lg hover:cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out rounded bg-gray-100">
           <h1 className="text-xl font-bold">Get The List of Users</h1>
         </div>
-      </Link>
+      </a>
       <Link to="/update">
         <div className="w-2/3 mx-auto hover:scale-110 transition duration-500 ease-in-out flex justify-center mt-10 p-4 shadow-lg hover:cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out rounded bg-gray-100">
           <h1 className="text-xl font-bold">Update an Existing User</h1>

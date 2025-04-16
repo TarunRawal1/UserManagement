@@ -41,7 +41,11 @@ app.post("/delete", async (req, res) => {
     if (!userEmail) {
       return res.status(400).json({ message: "record not found" });
     }
-    await UserModel.deleteOne({ email: userEmail });
+    const val = await UserModel.deleteOne({ email: userEmail });
+    if (val.deletedCount === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     console.log("User Deleted Successfully");
     return res.status(200).json({ message: "User Deleted Successfully" });
   } catch (error) {
